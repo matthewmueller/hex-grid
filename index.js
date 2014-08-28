@@ -1,5 +1,5 @@
-var inside = require('point-in-polygon');
-var defined = require('defined');
+var inside = require('substack/point-in-polygon');
+var defined = require('substack/defined@0.0.0');
 
 module.exports = function (opts, hexes) {
     var rsize = dims(opts);
@@ -23,7 +23,7 @@ module.exports = function (opts, hexes) {
             y: defined(opts.offsetTop, 0)
         };
     }
-    
+
     var x = 0, y = 0, row = 0;
     var results = [], points = [];
     for (var i = 0; i < hexes.length; i++) {
@@ -34,7 +34,7 @@ module.exports = function (opts, hexes) {
             hex.style.top = y;
         }
         results.push({ x: x, y: y });
-        
+
         var hw = hsize.width / 2, hh = hsize.height / 2;
         var cx = x + hw, cy = y + hh;
         var pts = [
@@ -46,7 +46,7 @@ module.exports = function (opts, hexes) {
             [ cx - hw, cy - hh / 2 ]
         ];
         points.push(pts);
-        
+
         x += hsize.width + spacing;
         if (x > rsize.width - hsize.width) {
             y += Math.floor(hsize.height * 3/4) + spacing;
